@@ -11,12 +11,12 @@ import { HomePage } from '../pages/home/home';
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    DirectivesModule
+    HomePage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    DirectivesModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
