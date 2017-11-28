@@ -1,14 +1,43 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Agenda
     </ion-title>
   </ion-navbar>
 </ion-header>
+<ion-content [class.disable-scrolling]='isScaling'>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <div pinch
+       (pinchstart)="onPinchStart($event)"
+       (pinchmove)="onPinchMove($event)"
+       (pinchend)="onPinchEnd($event)"
+       class="scale-wrapper">
+
+    <div *ngFor="let appointment of appointments"
+         [class.appointment]="appointment.hasAppointment"
+         class="zoom-row">
+
+      <div #cell
+           class="zoom-cell">
+
+        <div class="time">
+          {{ appointment.start | date:'HH:mm' }}
+        </div>
+
+        <div class="text">
+          {{ appointment.title }}
+
+          <div>
+            <small>
+              {{ appointment.details }}
+            </small>
+          </div>
+
+        </div>
+      </div>
+      <div *ngIf="appointment.hasAppointment"
+           class="read-more"></div>
+    </div>
+  </div>
+
 </ion-content>
